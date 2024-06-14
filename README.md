@@ -66,3 +66,36 @@ After preprocessing, the preprocessed data is saved in the following files under
 
 - For BERT-based models: `tweets_bert.txt` (text format) and `tweets_bert.pkl` (pickle format).
 - For general NLP tasks: `tweets_general.csv`.
+
+### Pretrained BERT
+
+- **Data Preparation**: The dataset was split into training and validation sets using `train_test_split`. Token sequences were converted to tensors and padded for efficient batch processing.
+  There were no steps taken to balance the dataset for this model.
+
+- **Model Setup**: Utilized `BertForSequenceClassification` from Hugging Face's Transformers library, initialized with `bert-base-uncased` for pre-trained weights.
+
+- **Training Process**:
+  - **Optimizer**: AdamW optimizer with a learning rate of `1e-5`.
+  - **Loss Function**: Cross-entropy loss (`CrossEntropyLoss`) used for training.
+  - **Epochs**: Trained over 3 epochs, tracking average loss per epoch.
+  - **Results**:
+    - Epoch 1: Average loss of `0.2146`
+    - Epoch 2: Average loss of `0.1565`
+    - Epoch 3: Average loss of `0.1341`
+
+#### Comparison with Logistic Regression and CNN Models
+
+- **BERT vs Logistic Regression**:
+
+  - BERT achieved a validation accuracy of 94%, significantly higher than logistic regression's accuracy of 79.20%.
+
+- **BERT vs CNN**:
+  - BERT and CNN both achieved high validation accuracies (94% and 92.31%, respectively). BERT performed slightly better considering the dataset it was trained on was not balanced.
+
+### Key points
+
+- Training BERT on the tweet dataset for hate speech classification resulted in superior performance compared to logistic regression and comparable performance to CNN models.
+- Both logistic regression and CNN models required dataset balancing techniques to mitigate overfitting and improve generalization, which was not the case with the pretrained BERT model.
+- BERT achieved a validation accuracy of 94%, and CNN 92.31%.
+- The training of BERT took approximately 7 hours over 3 epochs.
+- The comparison with CNN is based on accuracy alone, as recall and precision for the CNN model were not measured in this evaluation.
