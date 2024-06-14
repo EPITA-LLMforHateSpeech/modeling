@@ -66,3 +66,43 @@ After preprocessing, the preprocessed data is saved in the following files under
 
 - For BERT-based models: `tweets_bert.txt` (text format) and `tweets_bert.pkl` (pickle format).
 - For general NLP tasks: `tweets_general.csv`.
+
+## Modeling
+### Using Logistic Regression
+#### Overview
+
+This section of the project focuses on detecting hate speech in tweets using traditional machine learning techniques, specifically logistic regression. The dataset used is preprocessed and tokenized for efficient modeling. This section of the README provides an overview of the steps followed in the notebook titled `logistic_regression`.
+Steps
+
+    Data Preprocessing:
+        The dataset was preprocessed to clean and tokenize tweets, preparing them for further analysis. Tokens were generated to facilitate text vectorization.
+
+    Vectorization:
+        Vectorization was performed using 2 types of vectorizers, CountVectorizer and TfidfVectorizer. The vocabulary size derived from a preliminary BERT tokenizer training session was used to determine the max_features parameter for vectorization.
+
+    Balancing the Dataset:
+        Due to significant class imbalance, the dataset was undersampled to ensure equal representation of both classes (hate speech and non-hate speech) during model training.
+
+    Model Training and Evaluation:
+
+        Two logistic regression models were trained and evaluated on two types of vectorized datasets (CountVectorizer and TfidfVectorizer). The performance metrics of each model were compared.
+
+        Results:
+            CountVectorizer:
+                Accuracy: 77.97%
+                Precision: 75.44%
+                Recall: 78.81%
+                F1 Score: 77.09%
+                ROC AUC: 78.02%
+            TfidfVectorizer (superior performance):
+                Accuracy: 79.20%
+                Precision: 75.69%
+                Recall: 82.16%
+                F1 Score: 78.79%
+                ROC AUC: 79.36%
+
+        Based on these metrics, TfidfVectorizer was identified as the preferred vectorizer due to its higher recall, F1 score, and ROC AUC, indicating better hate speech detection capabilities.
+
+#### Conclusion
+
+The logistic regression models trained on tfidf vectorized datasets showed better results in hate speech detection from tweets. Future work may involve experimenting with other advanced models or fine-tuning hyperparameters to further improve performance.
