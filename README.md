@@ -54,18 +54,13 @@ For BERT-based models, the preprocessing steps are similar but with some specifi
 8. **Removing Stopwords:** BERT's tokenizer does not explicitly handle stopwords, so they are retained.
 9. **Lemmatization:** Not applicable for BERT, as WordPieces are already subword units.
 
-### Usage
-
-To preprocess text data for NLP tasks, use the provided preprocessing functions in your Python scripts or notebooks. Ensure that you install the required libraries (necessary libraries in `requirements.txt`) before using the code.
-
-For BERT-based models, use the specialized preprocessing function tailored for BERT tokenization.
 
 ### Output Files
 
 After preprocessing, the preprocessed data is saved in the following files under the `preprocessed` folder:
 
 - For BERT-based models: `tweets_bert.txt` (text format) and `tweets_bert.pkl` (pickle format).
-- For general NLP tasks: `tweets_general.csv`.
+- For other NLP tasks: `tweets_general.csv`.
 
 ## Modeling
 ### Using Logistic Regression
