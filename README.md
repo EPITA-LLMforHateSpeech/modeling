@@ -54,15 +54,84 @@ For BERT-based models, the preprocessing steps are similar but with some specifi
 8. **Removing Stopwords:** BERT's tokenizer does not explicitly handle stopwords, so they are retained.
 9. **Lemmatization:** Not applicable for BERT, as WordPieces are already subword units.
 
-### Usage
-
-To preprocess text data for NLP tasks, use the provided preprocessing functions in your Python scripts or notebooks. Ensure that you install the required libraries (necessary libraries in `requirements.txt`) before using the code.
-
-For BERT-based models, use the specialized preprocessing function tailored for BERT tokenization.
 
 ### Output Files
 
 After preprocessing, the preprocessed data is saved in the following files under the `preprocessed` folder:
 
 - For BERT-based models: `tweets_bert.txt` (text format) and `tweets_bert.pkl` (pickle format).
-- For general NLP tasks: `tweets_general.csv`.
+- For other NLP tasks: `tweets_general.csv`.
+
+## Modeling
+
+
+### Using Logistic Regression
+#### Overview
+
+This section of the project focuses on detecting hate speech in tweets using traditional machine learning techniques, specifically logistic regression. The dataset used is preprocessed and tokenized for efficient modeling. This section of the README provides an overview of the steps followed in the notebook titled `logistic_regression`.
+Steps
+
+**Data Preprocessing:**
+    The dataset was preprocessed to clean and tokenize tweets, preparing them for further analysis. Tokens were generated to facilitate text vectorization.
+
+**Vectorization:**
+    Vectorization was performed using 2 types of vectorizers, CountVectorizer and TfidfVectorizer. The vocabulary size derived from a preliminary BERT tokenizer training session was used to determine the max_features parameter for vectorization.
+
+**Balancing the Dataset:**
+    Due to significant class imbalance, the dataset was undersampled to ensure equal representation of both classes (hate speech and non-hate speech) during model training.
+
+**Model Training and Evaluation:**
+    Two logistic regression models were trained and evaluated on two types of vectorized datasets (CountVectorizer and TfidfVectorizer). The performance metrics of each model were compared.
+    
+    Results:
+        CountVectorizer:
+                Accuracy: 77.97%
+                Precision: 75.44%
+                Recall: 78.81%
+                F1 Score: 77.09%
+                ROC AUC: 78.02%
+            TfidfVectorizer (superior performance):
+                Accuracy: 79.20%
+                Precision: 75.69%
+                Recall: 82.16%
+                F1 Score: 78.79%
+                ROC AUC: 79.36%
+
+Based on these metrics, TfidfVectorizer was identified as the preferred vectorizer due to its higher recall, F1 score, and ROC AUC, indicating better hate speech detection capabilities.
+
+#### Conclusion
+
+The logistic regression models trained on tfidf vectorized datasets showed better results in hate speech detection from tweets. Future work may involve experimenting with other advanced models or fine-tuning hyperparameters to further improve performance.
+
+### CNN Model
+
+#### Data Preparation
+
+- Used the same preprocessed CSV containing tweets and labels.
+- Trained a custom tokenizer on the entire tweet dataset to convert text to sequences.
+
+#### Training on Entire Dataset
+
+- Trained the CNN model on the entire dataset for 3 epochs.
+- Results:
+  - **Epoch 1**: Accuracy: 0.9410, Loss: 0.2151, Val Accuracy: 0.9431, Val Loss: 0.1527
+  - **Epoch 2**: Accuracy: 0.9480, Loss: 0.1264, Val Accuracy: 0.9405, Val Loss: 0.1794
+  - **Epoch 3**: Accuracy: 0.9789, Loss: 0.0527, Val Accuracy: 0.9187, Val Loss: 0.2529
+
+#### Training on Balanced Dataset
+
+- Balanced the dataset by undersampling the majority class.
+- Trained the CNN model on the balanced dataset for 3 epochs.
+- Results:
+  - **Epoch 1**: Accuracy: 0.9179, Loss: 0.2408, Val Accuracy: 0.8951, Val Loss: 0.2497
+  - **Epoch 2**: Accuracy: 0.9802, Loss: 0.0643, Val Accuracy: 0.9178, Val Loss: 0.2373
+  - **Epoch 3**: Accuracy: 0.9960, Loss: 0.0232, Val Accuracy: 0.9231, Val Loss: 0.2608
+
+#### Performance Comparison
+
+- The CNN model trained on the balanced dataset performed better and showed more stable validation metrics compared to the logistic regression models.
+- The balanced CNN model demonstrated improved generalization and higher validation accuracy.
+
+### Conclusion
+
+Training a CNN model on the balanced dataset resulted in significantly higher accuracy (99.60% training, 92.31% validation) compared to the logistic regression model, which achieved approximately 79.20% accuracy on the same dataset.
