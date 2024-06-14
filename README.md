@@ -82,6 +82,7 @@ Steps
 
 **Model Training and Evaluation:**
     Two logistic regression models were trained and evaluated on two types of vectorized datasets (CountVectorizer and TfidfVectorizer). The performance metrics of each model were compared.
+    
     **Results:**
         CountVectorizer:
                 Accuracy: 77.97%
