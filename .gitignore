@@ -163,3 +163,7 @@ cython_debug/
 
 data/labeled_data.csv
 data/labeled_data.p
+
+data/davidson
+data/founta
+data/mendeley
