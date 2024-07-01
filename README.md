@@ -208,9 +208,3 @@ To use the trained model for prediction, load the model and preprocess the input
 ## Summary after Training
 The model summary provides details about the layers, their output shapes, and the number of parameters. The final model has around 2.34 million parameters, with approximately 780,000 trainable parameters.
 
-## License
-This project is licensed under the MIT License. You are free to use, modify, and distribute the code with proper attribution.
-
----
-
-This README provides an overview of the project, detailing the steps from data preparation to model training and evaluation. For more detailed instructions and the actual code, refer to the source files in the repository.
