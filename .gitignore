@@ -167,3 +167,7 @@ data/labeled_data.p
 data/davidson
 data/founta
 data/mendeley
+models/first_model.keras
+models/regularized_model.keras
+models/model_with_dropout.keras
+models/dalinvip_tf_model.keras
