@@ -194,3 +194,7 @@ preprocessed/bert_mendeley_val_dataset.pkl
 preprocessed/final_bert_test_dataset.pt
 preprocessed/final_bert_train_dataset.pt
 notebooks/mendeley/logs/events.out.tfevents.1720518948.LAPTOP-1N9BL58R.2740.0
+preprocessed/mendeley/train.csv
+models/complex_model.keras
+models/cnn_model_regularization.keras
+preprocessed/mendeley.zip
