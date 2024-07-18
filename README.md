@@ -173,3 +173,38 @@ Training a CNN model on the balanced dataset resulted in significantly higher ac
 - The training of BERT took approximately 7 hours over 3 epochs.
 - The comparison with CNN is based on accuracy alone, as recall and precision for the CNN model were not measured in this evaluation.
 
+
+# BiLSTM Hate Speech Detection Model
+
+This repository contains code for training a Bidirectional LSTM (BiLSTM) model to detect hate speech in tweets. The model is built using TensorFlow and Keras, and it is trained on a preprocessed dataset of tweets.
+
+## Introduction
+This project aims to create a machine learning model that can identify hate speech in text data, specifically tweets. The model uses a Bidirectional LSTM (BiLSTM) network to process and classify the tweets.
+
+## Data Preparation
+1. **Load the Dataset:** The dataset is loaded from a preprocessed pickle file containing tweets and their corresponding labels.
+2. **Preprocess the Data:** Tokenize the tweets and pad the sequences to ensure uniform input length for the model.
+3. **Split the Data:** The data is split into training and testing sets to evaluate the model's performance.
+
+## Model Architecture
+The model is defined using a Sequential API with the following layers:
+- **Embedding Layer:** Converts the input tokens into dense vectors of fixed size.
+- **Bidirectional LSTM Layers:** Two Bidirectional LSTM layers to capture dependencies in both directions.
+- **Dropout Layers:** Applied after each LSTM layer to prevent overfitting.
+- **Dense Layer:** A single neuron with a sigmoid activation function for binary classification.
+
+## Training the Model
+The model is compiled with Adam optimizer and binary crossentropy loss. It is trained for 20 epochs with a batch size of 128, and a validation split of 20% to monitor performance on unseen data.
+
+## Evaluation
+After training, the model's performance is evaluated on the test set. Key metrics include accuracy, precision, recall, and F1-score. The model achieves an overall test accuracy of approximately 92%.
+
+## Saving the Model
+The trained model is saved in HDF5 format for future use. The HDF5 format is chosen for its compatibility and ease of use.
+
+## Usage
+To use the trained model for prediction, load the model and preprocess the input text in the same manner as the training data. Pass the preprocessed text to the model to obtain predictions.
+
+## Summary after Training
+The model summary provides details about the layers, their output shapes, and the number of parameters. The final model has around 2.34 million parameters, with approximately 780,000 trainable parameters.
+
